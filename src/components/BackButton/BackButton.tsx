@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Image, StyleSheet, GestureResponderEvent } from "react-native";
+import { Pressable, Image, StyleSheet, GestureResponderEvent } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 
 type Props = {
@@ -8,9 +8,9 @@ type Props = {
 
 export default function BackButton(props: Props) {
   return (
-    <TouchableOpacity onPress={props.goBack} style={styles.container}>
-      <Image style={styles.image} source={require("../assets/arrow_back.png")} />
-    </TouchableOpacity>
+    <Pressable onPress={props.goBack} style={styles.container}>
+      <Image style={styles.image} source={require("../../assets/arrow_back.png")} />
+    </Pressable>
   );
 }
 
@@ -19,6 +19,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10 + getStatusBarHeight(),
     left: 4,
+    // borderColor: "red",
+    // borderWidth: 1,
   },
   image: {
     width: 24,

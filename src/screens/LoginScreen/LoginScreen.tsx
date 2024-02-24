@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { TouchableOpacity, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
-import Background from "../components/Background";
-import Logo from "../components/Logo";
-import Header from "../components/Header";
-import Button from "../components/Button";
-import TextInput from "../components/TextInput";
-import BackButton from "../components/BackButton";
-import { theme } from "../core/theme";
-import { emailValidator } from "../helpers/emailValidator";
-import { passwordValidator } from "../helpers/passwordValidator";
+import Background from "../../components/Background/Background";
+import Logo from "../../components/Logo/Logo";
+import Header from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
+import TextInput from "../../components/TextInput/TextInput";
+import BackButton from "../../components/BackButton/BackButton";
+import { theme } from "../../core/theme";
+import { emailValidator } from "../../helpers/emailValidator";
+import { passwordValidator } from "../../helpers/passwordValidator";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slices/authSlice";
 
 type LoginScreenProps = {
   navigation: {
@@ -21,6 +23,7 @@ type LoginScreenProps = {
 };
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState<{ value: string; error: string }>({
     value: "",
     error: "",
@@ -38,6 +41,8 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
       setPassword({ ...password, error: passwordError });
       return;
     }
+    dispatch(login({ id: "ahi26nj23r_28", name: "Ravi", token: "7a8f24k29f0f4n57np3" }));
+
     navigation.reset({
       index: 0,
       routes: [{ name: "Dashboard" }],
@@ -71,18 +76,18 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
         secureTextEntry
       />
       <View style={styles.forgotPassword}>
-        <TouchableOpacity onPress={() => navigation.navigate("ResetPasswordScreen")}>
+        <Pressable onPress={() => navigation.navigate("ResetPasswordScreen")}>
           <Text style={styles.forgot}>Forgot your password?</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
       <Button mode="contained" onPress={onLoginPressed}>
         Login
       </Button>
       <View style={styles.row}>
         <Text>Don’t have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.replace("RegisterScreen")}>
+        <Pressable onPress={() => navigation.replace("RegisterScreen")}>
           <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </Background>
   );

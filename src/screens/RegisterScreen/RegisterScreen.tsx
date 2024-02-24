@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import { Text } from "react-native-paper";
-import Background from "../components/Background";
-import Logo from "../components/Logo";
-import Header from "../components/Header";
-import Button from "../components/Button";
-import TextInput from "../components/TextInput";
-import BackButton from "../components/BackButton";
-import { theme } from "../core/theme";
-import { emailValidator } from "../helpers/emailValidator";
-import { passwordValidator } from "../helpers/passwordValidator";
-import { nameValidator } from "../helpers/nameValidator";
+import Background from "../../components/Background/Background";
+import Logo from "../../components/Logo/Logo";
+import Header from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
+import TextInput from "../../components/TextInput/TextInput";
+import BackButton from "../../components/BackButton/BackButton";
+import { theme } from "../../core/theme";
+import { emailValidator } from "../../helpers/emailValidator";
+import { passwordValidator } from "../../helpers/passwordValidator";
+import { nameValidator } from "../../helpers/nameValidator";
 
 type Props = {
   navigation: {
@@ -81,9 +81,9 @@ export default function RegisterScreen({ navigation }: Props) {
       </Button>
       <View style={styles.row}>
         <Text>Already have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>
+        <Pressable onPress={() => navigation.replace("LoginScreen")}>
           <Text style={styles.link}>Login</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </Background>
   );

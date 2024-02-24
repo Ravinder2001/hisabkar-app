@@ -1,6 +1,6 @@
 import React from "react";
 import { ImageBackground, StyleSheet, KeyboardAvoidingView, ViewStyle } from "react-native";
-import { theme } from "../core/theme";
+import { theme } from "../../core/theme";
 
 type Props = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type Props = {
 
 export default function Background(props: Props) {
   return (
-    <ImageBackground source={require("../assets/background_dot.png")} resizeMode="repeat" style={styles.background}>
+    <ImageBackground source={require("../../assets/background_dot.png")} resizeMode="repeat" style={styles.background}>
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         {props.children}
       </KeyboardAvoidingView>

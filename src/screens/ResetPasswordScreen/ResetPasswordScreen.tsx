@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Background from "../components/Background";
-import BackButton from "../components/BackButton";
-import Logo from "../components/Logo";
-import Header from "../components/Header";
-import TextInput from "../components/TextInput";
-import Button from "../components/Button";
-import { emailValidator } from "../helpers/emailValidator";
+import Background from "../../components/Background/Background";
+import BackButton from "../../components/BackButton/BackButton";
+import Logo from "../../components/Logo/Logo";
+import Header from "../../components/Header/Header";
+import TextInput from "../../components/TextInput/TextInput";
+import Button from "../../components/Button/Button";
+import { emailValidator } from "../../helpers/emailValidator";
 type Props = {
   navigation: {
     goBack: () => void;

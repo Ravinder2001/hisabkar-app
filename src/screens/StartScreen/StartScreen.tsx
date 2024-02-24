@@ -1,9 +1,9 @@
 import React from "react";
-import Background from "../components/Background";
-import Logo from "../components/Logo";
-import Header from "../components/Header";
-import Button from "../components/Button";
-import Paragraph from "../components/Paragraph";
+import Background from "../../components/Background/Background";
+import Logo from "../../components/Logo/Logo";
+import Header from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
+import Paragraph from "../../components/Paragraph/Paragraph";
 
 type Props = {
   navigation: {

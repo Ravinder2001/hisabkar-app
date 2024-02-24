@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Button as PaperButton, ButtonProps } from "react-native-paper";
-import { theme } from "../core/theme";
+import { theme } from "../../core/theme";
 
 interface CustomButtonProps extends ButtonProps {
   mode: "contained" | "outlined";
