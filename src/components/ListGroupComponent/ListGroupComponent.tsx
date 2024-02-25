@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { View, Text, TextInput, FlatList, Image, Pressable, StyleSheet } from "react-native";
 import styles from "./style";
 
-const ListGroupComponent = () => {
+type Props = {
+  navigation: {
+    navigate: (route: string) => void;
+  };
+};
+
+const ListGroupComponent = ({ navigation }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [appointments, setAppointments] = useState([
     {
@@ -95,7 +101,7 @@ const ListGroupComponent = () => {
           ))}
         </View>
         <View style={styles.buttonsContainer}>
-          <Pressable style={styles.actionButton}>
+          <Pressable style={styles.actionButton} onPress={() => navigation.navigate("ExpenseList")}>
             <Text style={styles.buttonText}>View</Text>
           </Pressable>
           <Pressable style={styles.actionButton}>

@@ -20,7 +20,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
   return (
     <MainBackground>
       <Navbar goBack={()=>{}} isBackVisible={false} title="Group"/>
-      <ListGroupComponent />
+      <ListGroupComponent navigation={navigation} />
       <Pressable
         style={{
           padding: 10,

@@ -1,21 +1,18 @@
 import React, { useState } from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, View } from "react-native";
 import styles from "./style";
 import BackButton from "../../components/BackButton/BackButton";
 import Navbar from "../../components/NavBar/Navbar";
 import TextInput from "../../components/TextInput/TextInput";
 import AddFriendToGroup from "../../components/AddFriendToGroup/AddFriendToGroup";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { selectedFriendType, typeImageType } from "../../utils/types";
 type Props = {
   navigation: {
     goBack: () => void;
   };
 };
-type typeImageType = {
-  id: number;
-  image: string;
-  label: string;
-  isSelected: boolean;
-};
+
 function CreateGroup({ navigation }: Props) {
   const [typeImageList, setTypeImageList] = useState<typeImageType[]>([
     {
@@ -28,6 +25,7 @@ function CreateGroup({ navigation }: Props) {
     { id: 3, image: require("../../assets/travel.png"), label: "Travel", isSelected: false },
     { id: 4, image: require("../../assets/Others.png"), label: "Others", isSelected: false },
   ]);
+  const [selectedFriend, setSelectedFriend] = useState<selectedFriendType[]>([]);
 
   const handleBack = () => {
     navigation.goBack();
@@ -39,35 +37,48 @@ function CreateGroup({ navigation }: Props) {
         if (item.id == id) {
           return { ...item, isSelected: !item.isSelected };
         }
-        return { ...item, isSelected: false }
+        return { ...item, isSelected: false };
       });
     });
   };
 
   return (
-    <View style={styles.container}>
-      <Navbar isBackVisible={true} goBack={handleBack} title="Create Group" />
-      <TextInput
-        label="Group Name"
-        returnKeyType="next"
-        // value={name.value}
-        // onChangeText={(text:string) => setName({ value: text, error: "" })}
-        // error={!!name.error}
-        // errorText={name.error}
-      />  
+    <BottomSheetModalProvider>
+      <View style={styles.container}>
+        <View>
+          <Navbar isBackVisible={true} goBack={handleBack} title="Create Group" />
+          <TextInput
+            label="Group Name"
+            returnKeyType="next"
+            // value={name.value}
+            // onChangeText={(text:string) => setName({ value: text, error: "" })}
+            // error={!!name.error}
+            // errorText={name.error}
+          />
 
-      <Text style={styles.label}>Group Type</Text>
+          <Text style={styles.label}>Group Type</Text>
 
-      <View style={styles.typeBox}>
-        {typeImageList.map((image) => (
-          <Pressable key={image.id} onPress={() => typeSelect(image.id)} style={image.isSelected ? styles.imageBoxActive : styles.imageBox}>
-            <Image style={styles.image} source={image.image} />
-            <Text style={styles.typeLabel}>{image.label}</Text>
-          </Pressable>
-        ))}
+          <View style={styles.typeBox}>
+            <FlatList
+              data={typeImageList}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <Pressable onPress={() => typeSelect(item.id)} style={item.isSelected ? styles.imageBoxActive : styles.imageBox}>
+                  <Image style={styles.image} source={item.image} />
+                  <Text style={styles.typeLabel}>{item.label}</Text>
+                </Pressable>
+              )}
+              horizontal={true}
+              scrollEnabled={false}
+            />
+          </View>
+          <AddFriendToGroup setSelectedFriend={setSelectedFriend} selectedFriend={selectedFriend} />
+        </View>
+        <Pressable style={styles.submitBtn}>
+          <Text style={styles.submitBtnText}>Submit</Text>
+        </Pressable>
       </View>
-      <AddFriendToGroup/>
-    </View>
+    </BottomSheetModalProvider>
   );
 }
 

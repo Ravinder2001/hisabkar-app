@@ -7,6 +7,7 @@ import CreateGroup from "./src/screens/CreateGroup/CreateGroup";
 import { Provider } from "react-native-paper";
 import { useSelector } from "react-redux";
 import { RootState } from "./src/store/store";
+import ExpenseList from "./src/screens/ExpenseList/ExpenseList";
 const Stack = createStackNavigator();
 function AuthStack() {
   const isUser = useSelector((state: RootState) => state.AuthSlice.isUser);
@@ -15,7 +16,7 @@ function AuthStack() {
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={isUser ? "CreateGroup" : "StartScreen"}
+          initialRouteName={isUser ? "ExpenseList" : "StartScreen"}
           screenOptions={{
             headerShown: false,
           }}
@@ -24,6 +25,7 @@ function AuthStack() {
             <>
               <Stack.Screen name="Dashboard" component={Dashboard} />
               <Stack.Screen name="CreateGroup" component={CreateGroup} />
+              <Stack.Screen name="ExpenseList" component={ExpenseList} />
             </>
           ) : (
             <>
