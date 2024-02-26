@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, FlatList } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList, Pressable } from "react-native";
 import styles from "./style";
 import { expenseListType } from "../../utils/types";
 import { AntDesign } from '@expo/vector-icons';
-const ExpenseList = () => {
+type Props={
+  navigation: {
+    reset: (config: { index: number; routes: { name: string }[] }) => void;
+    replace: (route: string) => void;
+    navigate: (route: string) => void;
+  };
+}
+const ExpenseList = ({navigation}:Props) => {
   const [expenseList, setExpenseList] = useState<expenseListType[]>([
     {
       name: "Grocery",
@@ -91,6 +98,7 @@ const ExpenseList = () => {
           </View>
         </View>
       </View>
+      
     </View>
   );
 
@@ -122,6 +130,23 @@ const ExpenseList = () => {
         renderItem={renderClassItem}
         keyExtractor={(item, index) => index.toString()}
       />
+      <Pressable
+        style={{
+          padding: 10,
+          alignItems: "center",
+          justifyContent: "center",
+          width: 60,
+          height: 60,
+          position: "absolute",
+          bottom: 50,
+          right: 10,
+          backgroundColor: "#6a4fff",
+          borderRadius: 100,
+        }}
+        onPress={() => navigation.navigate("AddExpense")}
+      >
+        <Text style={{ color: "white", fontSize: 28 }}>+</Text>
+      </Pressable>
     </View>
   );
 };

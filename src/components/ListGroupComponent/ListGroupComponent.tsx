@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, FlatList, Image, Pressable, StyleSheet } from "react-native";
 import styles from "./style";
-
+import { MaterialIcons,Feather,Entypo } from '@expo/vector-icons';
 type Props = {
   navigation: {
     navigate: (route: string) => void;
@@ -23,7 +23,7 @@ const ListGroupComponent = ({ navigation }: Props) => {
         { id: 5, remoteImage: "https://bootdey.com/img/Content/avatar/avatar3.png" },
         { id: 6, remoteImage: "https://bootdey.com/img/Content/avatar/avatar5.png" },
       ],
-      backgroundColor: "#ffdcb2",
+      backgroundColor: "#93dbc3",
       titleColor: "#ff8c00",
     },
     {
@@ -53,7 +53,7 @@ const ListGroupComponent = ({ navigation }: Props) => {
         { id: 5, remoteImage: "https://bootdey.com/img/Content/avatar/avatar3.png" },
         { id: 6, remoteImage: "https://bootdey.com/img/Content/avatar/avatar5.png" },
       ],
-      backgroundColor: "#ffdcb2",
+      backgroundColor: "#93dbc3",
       titleColor: "#ff8c00",
     },
     {
@@ -102,13 +102,20 @@ const ListGroupComponent = ({ navigation }: Props) => {
         </View>
         <View style={styles.buttonsContainer}>
           <Pressable style={styles.actionButton} onPress={() => navigation.navigate("ExpenseList")}>
-            <Text style={styles.buttonText}>View</Text>
+            {/* <Text style={styles.buttonText}>View</Text> */}
+            <MaterialIcons name="calendar-view-day" size={24} color="#72a603" />
           </Pressable>
           <Pressable style={styles.actionButton}>
-            <Text style={styles.buttonText}>Remove</Text>
+            {/* <Text style={styles.buttonText}>Remove</Text> */}
+            <Entypo name="bar-graph" size={24} color="#0357a6" />
           </Pressable>
           <Pressable style={styles.actionButton}>
-            <Text style={styles.buttonText}>Edit</Text>
+            {/* <Text style={styles.buttonText}>Edit</Text> */}
+            <Feather name="edit" size={24} color="#7b03a6" />
+          </Pressable>
+          <Pressable style={styles.actionButton}>
+            {/* <Text style={styles.buttonText}>Edit</Text> */}
+            <MaterialIcons name="delete" size={24} color="#a60344" />
           </Pressable>
         </View>
       </View>

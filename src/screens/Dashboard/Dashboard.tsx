@@ -19,7 +19,7 @@ type DashboardProps = {
 export default function Dashboard({ navigation }: DashboardProps) {
   return (
     <MainBackground>
-      <Navbar goBack={()=>{}} isBackVisible={false} title="Group"/>
+      <Navbar goBack={()=>{}} isBackVisible={false} title="Hisabkar"/>
       <ListGroupComponent navigation={navigation} />
       <Pressable
         style={{
